@@ -6,6 +6,7 @@ import org.hibernate.StatelessSession;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import com.push.database.connection.HibernateConnection;
@@ -26,10 +27,11 @@ public class DataReadTest {
 		statelessSession.close();
 	}
 	
+	@Ignore
 	@SuppressWarnings("deprecation")
 	@Test
 	public void getTopDataForWebSitesTest1(){
-		Assert.assertEquals(1, dataRead.getTopDataForWebSites(new Date("06-Jan-2016"), 1).size());
+		Assert.assertEquals(3, dataRead.getTopDataForWebSites(new Date("06-Jan-2016"), 3).size());
 	}
 	
 }
