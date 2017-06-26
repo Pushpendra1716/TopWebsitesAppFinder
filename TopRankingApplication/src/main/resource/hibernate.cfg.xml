@@ -27,7 +27,7 @@
 
    <!-- List of XML mapping files -->
    <!-- <mapping resource="Employee.hbm.xml"/> -->
-   <mapping class="com.push.vo.InputFileData"/>
-
+   <mapping class="com.push.vo.InputFileDataVo"/>
+   <mapping class="com.push.vo.InputFileVo"/>
 </session-factory>
 </hibernate-configuration>

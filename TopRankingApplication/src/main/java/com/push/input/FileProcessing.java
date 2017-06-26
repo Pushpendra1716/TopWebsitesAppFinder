@@ -10,6 +10,7 @@ import java.nio.file.StandardCopyOption;
 
 import org.apache.log4j.Logger;
 
+import com.push.dao.DataStore;
 
 public class FileProcessing {
 	
@@ -71,10 +72,11 @@ public class FileProcessing {
 	public void startFileProcessing(Path fileName){
 		
 		logger().info("  startFileProcessing : Start For :"+fileName);
+		DataStore dataStore= new DataStore();
 		if(fileName!=null){
 			if(fileExtenstionCheck(fileName)!= null){
 				final String fileNameWithpath=inputFileLocation+"/"+fileName;
-				CsvFileReader.readCsv(fileNameWithpath);
+				CsvFileReader.readCsv(fileNameWithpath,dataStore.saveFile(fileName.toString()));
 				movefile(fileName);
 			}else{
 				logger().error(" startFileProcessing : File Not Found with .csv extenstion ");

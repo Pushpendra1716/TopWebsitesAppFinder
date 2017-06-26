@@ -12,12 +12,15 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name= "SYS.INPUT_FILE_DATA")  
-public class InputFileData {
+public class InputFileDataVo {
 
 	@Id
-	@Column(name="FIELD_DATA_ID")
+	@Column(name="FILE_DATA_ID")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int fileDataId;
+	
+	@Column(name="FILE_ID")
+	private long fileId;
 	
 	@Column(name="LOAD_DATE")
 	private Date date;
@@ -38,6 +41,12 @@ public class InputFileData {
 		this.fileDataId = fileDataId;
 	}
 
+	public long getFileId() {
+		return fileId;
+	}
+	public void setFileId(long fileId) {
+		this.fileId = fileId;
+	}
 	public Date getDate() {
 		return date;
 	}
@@ -63,9 +72,9 @@ public class InputFileData {
 		this.loadTime = loadTime;
 	}
 	
-	public InputFileData() {
+	public InputFileDataVo() {
 	}
-	public InputFileData(Date date, String website, long visits) {
+	public InputFileDataVo(Date date, String website, long visits) {
 		this.date = date;
 		this.website = website;
 		this.visits = visits;

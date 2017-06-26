@@ -16,14 +16,14 @@ import org.supercsv.io.ICsvBeanReader;
 import org.supercsv.prefs.CsvPreference;
 
 import com.push.dao.DataStore;
-import com.push.vo.InputFileData;
+import com.push.vo.InputFileDataVo;
 
 public class CsvFileReader {
 	
 	private static Logger logger = Logger.getLogger(CsvFileReader.class);
 	private static final CsvPreference PIPE_DELIMITED = new CsvPreference.Builder('"', '|', "\n").maxLinesPerRow(10).build();
 
-    public static void readCsv(String csvFileName) {
+    public static void readCsv(String csvFileName, long fileId) {
 
     	logger.info("readCsv : Start :");
         ICsvBeanReader beanReader = null;
@@ -36,9 +36,10 @@ public class CsvFileReader {
                 final String[] header = beanReader.getHeader(true);
                 final CellProcessor[] processors = getProcessors();
 
-                InputFileData inputFileData;
-                List<InputFileData> inputFileDatas= new ArrayList<InputFileData>();
-                while ((inputFileData = beanReader.read(InputFileData.class, header, processors)) != null) {
+                InputFileDataVo inputFileData;
+                List<InputFileDataVo> inputFileDatas= new ArrayList<InputFileDataVo>();
+                while ((inputFileData = beanReader.read(InputFileDataVo.class, header, processors)) != null) {
+                	inputFileData.setFileId(fileId);
                 	inputFileDatas.add(inputFileData);
                 	if(inputFileDatas.size()==Integer.parseInt(PropertyFileLoader.getPropertie().getProperty("sizeOfData").toString())){
                 		dataStore.saveFileData(inputFileDatas);
