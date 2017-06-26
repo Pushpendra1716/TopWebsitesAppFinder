@@ -26,5 +26,6 @@
    <!-- <mapping resource="Employee.hbm.xml"/> -->
 	<mapping class="com.push.vo.InputFileDataVo"/>
    <mapping class="com.push.vo.InputFileVo"/>
+   <mapping class="com.push.vo.FileDataErrorVo"/>
 </session-factory>
 </hibernate-configuration>

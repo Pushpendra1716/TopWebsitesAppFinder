@@ -1,0 +1,1 @@
+DROP TABLE `sys`.`input_file_error_data`;

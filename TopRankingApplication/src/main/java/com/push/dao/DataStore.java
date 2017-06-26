@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.push.database.connection.HibernateConnection;
+import com.push.vo.FileDataErrorVo;
 import com.push.vo.InputFileDataVo;
 import com.push.vo.InputFileVo;
 
@@ -90,4 +91,35 @@ public class DataStore {
 		logger.info("saveFile : End : For File :"+ fileName);
 		return fileId;
 	}
+	
+	public void storeErrorData(List<FileDataErrorVo> fileDataErrorVos){
+		
+		logger.info("storeErrorData : Start :"+fileDataErrorVos.size());
+		Session session=null;
+		Transaction transaction=null;
+		try{
+			session=HibernateConnection.getHibernateSession();
+			transaction=session.beginTransaction();
+			for (int index = 0; index < fileDataErrorVos.size(); index++) {
+				FileDataErrorVo fileDataErrorVo =fileDataErrorVos.get(index);
+				session.save(fileDataErrorVo);
+				if(index % 50 == 0){
+					session.flush();
+					session.clear();
+				}
+			}
+			transaction.commit();
+		}catch (Exception e) {
+			if(transaction!=null){
+				transaction.rollback();
+			}
+			logger.error("storeErrorData : Error while data persistace :",e);
+		}finally {
+			if(session!=null){
+				session.close();
+			}
+		}
+		logger.info("storeErrorData : End :");
+	}
+	
 }
