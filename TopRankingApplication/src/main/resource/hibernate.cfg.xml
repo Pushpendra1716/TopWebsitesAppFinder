@@ -30,5 +30,7 @@
    <mapping class="com.push.vo.InputFileDataVo"/>
    <mapping class="com.push.vo.InputFileVo"/>
    <mapping class="com.push.vo.FileDataErrorVo"/>
+   <mapping class="com.push.vo.UserLoginVo"/>
+   <mapping class="com.push.vo.UserDetailsVo"/>
 </session-factory>
 </hibernate-configuration>
