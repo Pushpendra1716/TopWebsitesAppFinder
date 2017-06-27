@@ -7,10 +7,14 @@ import java.nio.file.NotDirectoryException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import com.push.dao.DataStore;
+import com.push.exception.ExceptionForDataBase;
+import com.push.vo.FileDataErrorVo;
 
 public class FileProcessing {
 	
@@ -73,15 +77,27 @@ public class FileProcessing {
 		
 		logger().info("  startFileProcessing : Start For :"+fileName);
 		DataStore dataStore= new DataStore();
-		if(fileName!=null){
-			if(fileExtenstionCheck(fileName)!= null){
-				final String fileNameWithpath=inputFileLocation+"/"+fileName;
-				CsvFileReader.readCsv(fileNameWithpath,dataStore.saveFile(fileName.toString()));
-				movefile(fileName);
-			}else{
-				logger().error(" startFileProcessing : File Not Found with .csv extenstion ");
-				movefile(fileName);
-			}
+		CsvFileReader csvFileReader= new CsvFileReader();
+		try{
+			if(fileName!=null){
+				if(fileExtenstionCheck(fileName)!= null){
+					final String fileNameWithpath=inputFileLocation+"/"+fileName;
+					csvFileReader.readCsv(fileNameWithpath,dataStore.saveFile(fileName.toString()));
+					movefile(fileName);
+				}else{
+					logger().error(" startFileProcessing : File Not Found with .csv extenstion ");
+					movefile(fileName);
+				}
+		}	
+		}catch (ExceptionForDataBase e) {
+			movefile(fileName);
+			FileDataErrorVo dataErrorVo= new FileDataErrorVo();
+			dataErrorVo.setFileId(0);
+			String message=e.getMessage()+fileName.toString();
+			dataErrorVo.setError(message.substring(0, message.length() >=1000 ? 1000 : message.length()));
+			List<FileDataErrorVo> fileDataErrorVos= new ArrayList<FileDataErrorVo>();
+			fileDataErrorVos.add(dataErrorVo);
+			dataStore.storeErrorData(fileDataErrorVos);
 		}
 		logger().info("  startFileProcessing : End For :"+fileName);
 	}
@@ -94,7 +110,6 @@ public class FileProcessing {
 			logger().error("Error whiel moving the input file");
 			logger().error("for :"+processingFileLocation+"/"+fileName+ " to "+ Paths.get(outputFileLocation+"/"+fileName),e);
 		}
-		
 	}
 	
 	public void archiveFile(Path fileName){

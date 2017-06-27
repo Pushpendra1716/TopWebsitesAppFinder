@@ -1,5 +1,6 @@
 package com.push.input;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -25,7 +26,7 @@ public class CsvFileReader {
 	private static Logger logger = Logger.getLogger(CsvFileReader.class);
 	private static final CsvPreference PIPE_DELIMITED = new CsvPreference.Builder('"', '|', "\n").maxLinesPerRow(10).build();
 
-    public static void readCsv(String csvFileName, long fileId) {
+    public void readCsv(String csvFileName, long fileId) {
 
     	logger().info("readCsv : Start :");
         ICsvBeanReader beanReader = null;
@@ -69,7 +70,8 @@ public class CsvFileReader {
 	                	if(dataErrorVos.size()==Integer.parseInt(PropertyFileLoader.getPropertie().getProperty("sizeOfErrorData").toString())){
 	                		dataStore.storeErrorData(dataErrorVos);
 	    	            }
-	                	logger().error(" readCsv : SuperCsvException while readind the data: " + e);
+	                	logger().error("readCsv : SuperCsvException while readind the data for file: "+new File(csvFileName).getName());
+	                	logger().error(" readCsv : SuperCsvException : " + e);
 	        		}catch (Exception e) {
 	        			dataErrorVo= new FileDataErrorVo();
 	                	dataErrorVo.setFileId(fileId);
@@ -79,6 +81,7 @@ public class CsvFileReader {
 	                	if(dataErrorVos.size()==Integer.parseInt(PropertyFileLoader.getPropertie().getProperty("sizeOfErrorData").toString())){
 	                		dataStore.storeErrorData(dataErrorVos);
 	    	            }
+	                	logger().error(" readCsv : Error while readind the data: "+new File(csvFileName).getName());
 	        			logger().error(" readCsv : Error while readind the data: " + e);
 					}	
                 }
@@ -93,9 +96,9 @@ public class CsvFileReader {
         	}
         }catch (FileNotFoundException ex) {
         	logger().error(" readCsv : Could not find the CSV file: " + ex);
-        } catch (IOException ex) {
+        }catch (IOException ex) {
         	logger().error(" readCsv : Error reading the CSV file: " + ex);
-        } catch (Exception e) {
+        }catch (Exception e) {
         	logger().error(" readCsv : Error reading the CSV file: " + e);
         }
         finally {
@@ -110,14 +113,14 @@ public class CsvFileReader {
         logger().info(" readCsv : End :");
     }
 
-    private static CellProcessor[] getProcessors(){
+    private CellProcessor[] getProcessors(){
         return new CellProcessor[] {
         		new ParseDate("yyyy-MM-dd"),
                 new NotNull(),
                 new ParseLong()};
     }
 
-    static Logger logger() {
+    Logger logger() {
         return logger;
     }	
 }

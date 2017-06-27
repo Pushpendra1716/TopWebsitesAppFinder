@@ -8,6 +8,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 import com.push.database.connection.HibernateConnection;
+import com.push.exception.ExceptionForDataBase;
 import com.push.vo.FileDataErrorVo;
 import com.push.vo.InputFileDataVo;
 import com.push.vo.InputFileVo;
@@ -47,24 +48,32 @@ public class DataStore {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public long saveFile(String fileName){
+	public long saveFile(String fileName) throws ExceptionForDataBase{
 		
 		logger.info("saveFile : Start : For File :"+ fileName);
-		long fileId=1;
+		
+		long count=0;
 		Session session=null;
 		Transaction transaction=null;
 		String query;
 		InputFileVo inputFileVo=null;
 		List<Object> object= new ArrayList<Object>();
 		try {
-			session=HibernateConnection.getHibernateSession();
-			query="SELECT max(fileId) from InputFileVo";
-			object= session.createQuery(query).setMaxResults(1).list();
-			if(object.get(0)!= null){
-				fileId=(long) object.get(0)+1;
+			if(count==0){
+				session=HibernateConnection.getHibernateSession();
+				query="SELECT max(fileId) from InputFileVo";
+				object= session.createQuery(query).setMaxResults(1).list();
+				if(object.get(0)!= null){
+					count=(long) object.get(0)+1;
+				}else{
+					count=count+1;
+				}
+			}else{
+				count=count+1;
 			}
 		} catch (Exception exp) {
 			logger.error("saveFile : Error while get the sequence for input file :"+ fileName +" Error : ",exp);
+			throw new ExceptionForDataBase("saveFile : Error while get the sequence for input file :");
 		}finally {
 			if(session != null){
 				session.flush();
@@ -74,7 +83,7 @@ public class DataStore {
 		try {
 			transaction=session.beginTransaction();
 			inputFileVo= new InputFileVo();
-			inputFileVo.setFileId(fileId);
+			inputFileVo.setFileId(count);
 			inputFileVo.setFileName(fileName);
 			session.save(inputFileVo);
 			transaction.commit();
@@ -83,13 +92,14 @@ public class DataStore {
 				transaction.rollback();
 			}
 			logger.error("saveFile : Error while saving the input file :"+ fileName +" Error : ",exp);
+			throw new ExceptionForDataBase("saveFile : Error while saving the input file :");
 		}finally {
 			if(session != null){
 				session.close();
 			}	
 		}
 		logger.info("saveFile : End : For File :"+ fileName);
-		return fileId;
+		return count;
 	}
 	
 	public void storeErrorData(List<FileDataErrorVo> fileDataErrorVos){

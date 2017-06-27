@@ -71,21 +71,24 @@ public class FileProcessingTest {
 	
 	/**
 	 * This test is used to validate file extension. 
+	 * Negative Condition
 	 */
 	@Test
 	public void getInputFileLacatoinTest1() {
 
 		Assert.assertNull(fileProcessing.fileExtenstionCheck(Paths.get("data.text")));
 	}
-	
+
 	/**
-	 * This test is used to validate file extension. 
+	 * This test is used to validate file extension.
+	 * Positive Condition 
 	 */
 	@Test
 	public void getInputFileLacatoinTest2() {
 
 		Assert.assertEquals(Paths.get("data.csv"),fileProcessing.fileExtenstionCheck(Paths.get("data.csv")));
 	}
+	
 	/**
 	 * This test is used validate file extension while processing
 	 */

@@ -1,5 +1,6 @@
 package com.push.input;
 
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -12,7 +13,6 @@ import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
@@ -21,9 +21,10 @@ import org.mockito.runners.MockitoJUnitRunner;
 @RunWith(MockitoJUnitRunner.class)
 public class CsvFileReaderTest {
 
-	String path=null;
-	Properties properties=null;
-	long fileId=0;
+	private String path=null;
+	private Properties properties=null;
+	private long fileId=0;
+	CsvFileReader csvFileReader=null;
 	@Mock
     private Logger logger;
 	
@@ -38,8 +39,8 @@ public class CsvFileReaderTest {
 			properties.load(input);
 			
 			path=properties.getProperty("systemPath")+properties.getProperty("inputFileLocation")+"/ExceptionTest.csv";	
-			spy(new CsvFileReader());	
-			when(CsvFileReader.logger()).thenReturn(logger);
+			csvFileReader=spy(new CsvFileReader());	
+			when(csvFileReader.logger()).thenReturn(logger);
 			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -47,21 +48,45 @@ public class CsvFileReaderTest {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	private CsvFileReader spy(CsvFileReader csvFileReader2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-
-	@Ignore
+	/**
+	 * This Used for to test the SuperCsvException while reading the file
+	 */
 	@Test
 	public void readCsvTest(){
-		when(CsvFileReader.logger()).thenReturn(logger);
 		
-		CsvFileReader.readCsv(path, fileId);
-		
-		verify(logger, times(1)).error("Error , is not directory :1234 is not directory");
+		csvFileReader.readCsv(path, fileId);
+		verify(logger, times(1)).error("readCsv : SuperCsvException while readind the data for file: ExceptionTest.csv");
 	}
+	
+	/**
+	 * This Used for to test the Exception while reading the file
+	 */
+	@Test
+	public void readCsvTest2(){
+		
+		csvFileReader.readCsv(path, fileId);
+		verify(logger, times(1)).error(" readCsv : Error while readind the data: ExceptionTest.csv");
+	}
+	
+	/**
+	 * This Used for to test the file not found
+	 */
+	@Test
+	public void readCsvTest3(){
+		
+		csvFileReader.readCsv("", fileId);
+		verify(logger, times(1)).error(" readCsv : Could not find the CSV file: java.io.FileNotFoundException: ");
+	}
+	
+	/**
+	 * This Used for to test the file is null
+	 */	
+	@Test
+	public void readCsvTest4(){
+		
+		csvFileReader.readCsv(null, fileId);
+		verify(logger, times(1)).error(" readCsv : No File Found ");
+	}
+	
 }
