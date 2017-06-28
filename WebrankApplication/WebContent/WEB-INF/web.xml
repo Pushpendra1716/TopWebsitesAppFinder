@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
-  <display-name>WebrankApplication</display-name>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>PushWeb</display-name>
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
@@ -9,4 +9,28 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <servlet-name>Form</servlet-name>
+    <servlet-class>com.push.controller.Authentication</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Form</servlet-name>
+    <url-pattern>/login</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>SignOn</servlet-name>
+    <servlet-class>com.push.controller.SignOnController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SignOn</servlet-name>
+    <url-pattern>/signOn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Process</servlet-name>
+    <servlet-class>com.push.controller.FindTopWebsites</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Process</servlet-name>
+    <url-pattern>/process</url-pattern>
+  </servlet-mapping>
 </web-app>
