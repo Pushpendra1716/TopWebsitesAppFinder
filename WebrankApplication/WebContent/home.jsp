@@ -17,7 +17,7 @@
 	});
 </script>
 </head>
-<body bgcolor="Azure">
+<body bgcolor=" silver ">
 <form style="top color: black; font: bold; font-size: xx-small;"> 
 	<a href="<%=new DataForWeb().checkExist("psuh")%>"> singOut</a>
 </form>
@@ -38,9 +38,9 @@
 					</tr>
 					<c:forEach items="${viewBean}" var="ViewBean">
 						<tr>
-							<td align="center" width="50" style="font:small-caps; color: DarkSlateGrey  ;">${ViewBean.id}</td>
-							<td align="left" width="150" style="font:small-caps; color: DarkSlateGrey  ;">${ViewBean.siteName}</td>
-							<td align="left" style="font:small-caps; color: DarkSlateGrey  ;">${ViewBean.visit}</td>
+							<td align="center" width="50" style="font:small-caps; color: black  ;">${ViewBean.id}</td>
+							<td align="left" width="150" style="font:small-caps; color: black  ;">${ViewBean.siteName}</td>
+							<td align="left" style="font:small-caps; color: black  ;">${ViewBean.visit}</td>
 						</tr>
 					</c:forEach>
 				</table>

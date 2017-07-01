@@ -16,6 +16,7 @@ import com.push.vo.ViewBean;
 import com.push.vo.UserDetailsVo;
 import com.push.vo.UserLoginVo;
 
+@SuppressWarnings("rawtypes")
 public class DataForWeb {
 
 private static Logger logger = Logger.getLogger(DataForWeb.class);
