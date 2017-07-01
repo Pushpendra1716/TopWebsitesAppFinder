@@ -1,3 +1,4 @@
+<%@page import="com.push.dao.DataForWeb"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -16,28 +17,30 @@
 	});
 </script>
 </head>
-<body>
+<body bgcolor="Azure">
+<form style="top color: black; font: bold; font-size: xx-small;"> 
+	<a href="<%=new DataForWeb().checkExist("psuh")%>"> singOut</a>
+</form>
 <center>
+	<p style="color: red; font: bold; font-size: large;">Top WebSites Details</p>
 	<form style="border-style: solid;" action="process" method="post">
-		<p>
-			Date: <input type="text" name="datepicker" id="datepicker" width=50px><input
-				type="submit" value="go" onclick="formSubmit()" />
+		<p> Date: <input type="text" size="15" name="datepicker" id="datepicker" width=50px>
+			<input type="submit" value="Go" onclick="formSubmit()" />
 		</p>
-		<br>
 		<c:if test='${viewBean != null}'>
 		<c:choose>
 			<c:when test='${ fn:length(viewBean) gt 0}'>
-				<table>
-					<tr>
-						<th>ID</th>
-						<th>Web Site</th>
-						<th>Hits</th>
+				<table border="1" bordercolor="gray">
+					<tr bgcolor="DarkSalmon">
+						<th align="center" >ID</th>
+						<th align="center">Web Site</th>
+						<th align="center">Hits</th>
 					</tr>
 					<c:forEach items="${viewBean}" var="ViewBean">
 						<tr>
-							<td>${ViewBean.id}</td>
-							<td>${ViewBean.siteName}</td>
-							<td>${ViewBean.visit}</td>
+							<td align="center" width="50" style="font:small-caps; color: DarkSlateGrey  ;">${ViewBean.id}</td>
+							<td align="left" width="150" style="font:small-caps; color: DarkSlateGrey  ;">${ViewBean.siteName}</td>
+							<td align="left" style="font:small-caps; color: DarkSlateGrey  ;">${ViewBean.visit}</td>
 						</tr>
 					</c:forEach>
 				</table>
@@ -45,7 +48,9 @@
 			<c:otherwise>There is no Records found for the searched date</c:otherwise>
 		</c:choose>
 		</c:if>
+	<h6 onclick="link">..clickTo see More</h6>
 	</form>
+	
 </center>
 </body>
 </html>
