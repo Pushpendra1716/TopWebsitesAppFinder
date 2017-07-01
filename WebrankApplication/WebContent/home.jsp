@@ -8,22 +8,22 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Home Page</title>
-<link rel="stylesheet" href="css/jquery-ui.1.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
 <script src="javascript/jquery-1.10.2.js"></script>
-<script src="javascript/jquery-ui.1.js"></script>
+<script src="javascript/jquery-ui.js"></script>
 <script>
 	$(function() {
 		$("#datepicker").datepicker();
 	});
 </script>
 </head>
-<body bgcolor=" silver ">
+<body bgcolor=" silver " >
 <form style="top color: black; font: bold; font-size: xx-small;"> 
 	<a href="<%=new DataForWeb().checkExist("psuh")%>"> singOut</a>
 </form>
 <center>
 	<p style="color: red; font: bold; font-size: large;">Top WebSites Details</p>
-	<form style="border-style: solid;" action="process" method="post">
+	<form action="process" method="post">
 		<p> Date: <input type="text" size="15" name="datepicker" id="datepicker" width=50px>
 			<input type="submit" value="Go" onclick="formSubmit()" />
 		</p>

@@ -6,12 +6,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+
 import com.push.service.UserService;
 
 
 public class Authentication extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private static Logger logger = Logger.getLogger(Authentication.class);       
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -31,10 +33,10 @@ public class Authentication extends HttpServlet {
 		String password=request.getParameter("password");
 		UserService user= new UserService();
 		if(user.userAuthentication(emailId.trim(), password.trim())){
-			System.out.println("Authetication successfully");
+			logger.info("Authetication successfully");
 			response.sendRedirect("home.jsp");
 		}else{
-			System.out.println("Authetication");
+			logger.info("Authetication Failed");
 			response.sendRedirect("index.html");
 		}
 		

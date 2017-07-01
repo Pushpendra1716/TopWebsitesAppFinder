@@ -24,7 +24,7 @@ private static Logger logger = Logger.getLogger(DataForWeb.class);
 	public List<ViewBean> getTopDataForWebSites(Date date , int numberOfData){
 		
 		int count = 0;
-		logger.info("DataStore :: getTopDataForWebSites : Start :");
+		logger.info("DataStore :: getTopDataForWebSites : Start : For Date :"+date);
 		StatelessSession session=HibernateConnection.getHibernateStatelessSession();
 		List<ViewBean> list= new ArrayList<ViewBean>();
 		String sql=null;
