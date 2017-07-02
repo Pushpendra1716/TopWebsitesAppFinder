@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Details</title>
+<title>TOP RANK APPLICATION</title>
 <script>
 	history.forward();
 </script>

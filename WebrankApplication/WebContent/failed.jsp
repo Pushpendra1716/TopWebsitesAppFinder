@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>TOP RANK APPLICATION</title>
 <script>
 history.forward();
 </script>
 </head>
 <body bgcolor=" silver ">
 
-<h3 align="center">Failed To persist the user's data.<a href="index.html">click here</a> to go to the login page</h3>
+<h3 align="center">Failed To persist the user's data.<a href="index.jsp">click here</a> to go to the login page</h3>
 </body>
 </html>

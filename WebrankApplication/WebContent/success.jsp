@@ -8,6 +8,6 @@ history.forward();
 </script>
 </head>
 <body>
-<h3>User data saved successfully. Please <a href="index.html">click here</a> to login to the system</h3>
+<h3>User data saved successfully. Please <a href="index.jsp">click here</a> to login to the system</h3>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Home Page</title>
+<title>TOP RANK APPLICATION</title>
 <link rel="stylesheet" href="css/jquery-ui.css">
 <script src="javascript/jquery-1.10.2.js"></script>
 <script src="javascript/jquery-ui.js"></script>

@@ -48,7 +48,7 @@ public class Authentication extends HttpServlet {
 				rd.include(request, response);
 			}
 		}else{
-			response.sendRedirect("index.html");
+			response.sendRedirect("index.jsp");
 		}
 		
 	}

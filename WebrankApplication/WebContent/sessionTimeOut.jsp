@@ -4,12 +4,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>TimeOut</title>
+<title>TOP RANK APPLICATION</title>
 <script>
 history.forward();
 </script>
 </head>
 <body bgcolor=" silver ">
-<h3 align="center">Your session has been Timed Out. Please <a href="index.html">click here</a> to login to the system</h3>
+<h3 align="center">Your session has been Timed Out. Please <a href="index.jsp">click here</a> to login to the system</h3>
 </body>
 </html>

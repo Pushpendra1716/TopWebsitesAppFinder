@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>TOP RANK APPLICATION</title>
 </head>
 <body bgcolor=" silver " >
 <%
@@ -12,7 +12,7 @@
  %>
  <h3 align="center">
  You are logged out successfully 
- <a href="index.html"><font color="Red">click here</font></a> 
+ <a href="index.jsp"><font color="Red">click here</font></a> 
  to login to the system </h3>
       
 </body>
