@@ -1,6 +1,8 @@
 package com.push.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +43,9 @@ public class Authentication extends HttpServlet {
 				response.sendRedirect("home.jsp");
 			}else{
 				logger.info("Authetication Failed");
-				response.sendRedirect("index.html");
+				request.setAttribute("error", "Invalid User Name or Password");
+				RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");            
+				rd.include(request, response);
 			}
 		}else{
 			response.sendRedirect("index.html");
