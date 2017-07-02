@@ -5,12 +5,15 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
-<script>
-history.forward();
-</script>
 </head>
 <body>
-
-<h3 align="center">Failed To persist the user's data.<a href="index.html">click here</a> to go to the login page</h3>
+<%
+     session.invalidate();
+ %>
+ <h3>
+ You are logged out successfully 
+ <a href="index.html"><font color="Red">click here</font></a> 
+ to login to the system </h3>
+      
 </body>
 </html>

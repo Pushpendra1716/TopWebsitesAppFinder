@@ -14,7 +14,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 
@@ -24,17 +23,18 @@ import com.push.vo.JSonObject;
 import com.push.vo.ViewBean;
 
 /**
- * Servlet implementation class FindTopWebsites
+ * Servlet implementation class DetailStatisticsController
  */
-@WebServlet("/FindTopWebsites")
-public class FindTopWebsites extends HttpServlet {
+@WebServlet("/DetailStatisticsController")
+public class DetailStatisticsController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static Logger logger = Logger.getLogger(FindTopWebsites.class);
+	private static Logger logger = Logger.getLogger(DetailStatisticsController.class);  
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public FindTopWebsites() {
+	public DetailStatisticsController() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -48,14 +48,9 @@ public class FindTopWebsites extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession httpSession = request.getSession();
-		if(httpSession.getAttribute("detailViewBean") != null){
-			httpSession.removeAttribute("detailViewBean");
-		}
-		
+
 		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		SimpleDateFormat sdf1 = new SimpleDateFormat("yyyy-MM-dd");
-		httpSession.setAttribute("date", request.getParameter("datepicker"));
 		Date date = null;
 		Date excludedSince = null;
 		Date excludedTill = null;
@@ -63,13 +58,13 @@ public class FindTopWebsites extends HttpServlet {
 		Map<String, Date> excludedSinceMap= new HashMap<String, Date>();
 		Map<String, Date> excludedTillMap= new HashMap<String, Date>();
 		try {
-			date = sdf.parse(request.getParameter("datepicker"));
+			date = sdf.parse(request.getSession().getAttribute("date").toString());
 			if(request.getParameter("numberOfData")!= null){
 				numberOfData = Integer.parseInt(request.getParameter("numberOfData"));
 			}else{
 				numberOfData=5;
 			}
-			
+
 			logger.info("doPost Selected date for processing : "+date);
 			ExcludeServiceImpl esl = new ExcludeServiceImpl();
 			List<JSonObject> excludedList = esl.excludedService();
@@ -110,8 +105,9 @@ public class FindTopWebsites extends HttpServlet {
 				break;
 			}
 		}
-		httpSession.setAttribute("viewBean", viewBeans);
-		response.sendRedirect("home.jsp");
+		request.getSession().setAttribute("detailViewBean", viewBeans);
+		response.sendRedirect("details.jsp");
 	}
 
-	}
+}
+

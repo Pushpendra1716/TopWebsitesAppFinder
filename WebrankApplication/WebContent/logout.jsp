@@ -4,10 +4,11 @@
 <html>
 <head>
 <script>
-history.forward();
 </script>
 </head>
-<body>
-<h3>User data saved successfully. Please <a href="index.html">click here</a> to login to the system</h3>
+<body dir="ltr">
+<font color="red"><label style="position: absolute; right: 110px;"><%=session.getAttribute("userId") %></label></font>
+<font color="blue"><a style="position: absolute;right: 30px;" href="doLogOut.jsp">Sign out</a></font>
+
 </body>
 </html>

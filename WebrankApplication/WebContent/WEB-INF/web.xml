@@ -33,4 +33,12 @@
     <servlet-name>Process</servlet-name>
     <url-pattern>/process</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>DetailStatistics</servlet-name>
+    <servlet-class>com.push.controller.DetailStatisticsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DetailStatistics</servlet-name>
+    <url-pattern>/detail_Info</url-pattern>
+  </servlet-mapping>
 </web-app>
