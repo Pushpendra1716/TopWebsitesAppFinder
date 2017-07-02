@@ -46,7 +46,7 @@ private static Logger logger = Logger.getLogger(DataForWeb.class);
 				session.close();
 			}
 		}
-		logger.info("DataStore :: getTopDataForWebSites : End : for SQL :"+sql);
+		logger.info("DataStore :: getTopDataForWebSites : End : Count :" + list.size()+ " :for SQL :"+sql);
 		return list;
 	}
 	
