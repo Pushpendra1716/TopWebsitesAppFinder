@@ -6,11 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 </head>
-<body>
+<body bgcolor=" silver " >
 <%
      session.invalidate();
  %>
- <h3>
+ <h3 align="center">
  You are logged out successfully 
  <a href="index.html"><font color="Red">click here</font></a> 
  to login to the system </h3>

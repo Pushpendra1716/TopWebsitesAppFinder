@@ -9,7 +9,7 @@
 history.forward();
 </script>
 </head>
-<body>
-<h3>Your session has been Timed Out. Please <a href="index.html">click here</a> to login to the system</h3>
+<body bgcolor=" silver ">
+<h3 align="center">Your session has been Timed Out. Please <a href="index.html">click here</a> to login to the system</h3>
 </body>
 </html>

@@ -7,8 +7,11 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Details</title>
+<script>
+	history.forward();
+</script>
 </head>
-<body>
+<body bgcolor=" silver ">
 <form action="detail_Info" method="post">
 <center>
 Select No of Row To Be Shown:

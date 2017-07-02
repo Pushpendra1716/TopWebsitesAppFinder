@@ -58,6 +58,10 @@ public class DetailStatisticsController extends HttpServlet {
 		Map<String, Date> excludedSinceMap= new HashMap<String, Date>();
 		Map<String, Date> excludedTillMap= new HashMap<String, Date>();
 		try {
+			if(request.getSession().getAttribute("date")== null){
+				response.sendRedirect("sessionTimeOut.jsp");
+				return;
+			}
 			date = sdf.parse(request.getSession().getAttribute("date").toString());
 			if(request.getParameter("numberOfData")!= null){
 				numberOfData = Integer.parseInt(request.getParameter("numberOfData"));
