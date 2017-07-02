@@ -13,7 +13,9 @@
 	href="css/font-awesome.min.css">
 
 <link rel="stylesheet" href="css/style.css">
-
+<script>
+	history.forward();
+</script>
 
 </head>
 
