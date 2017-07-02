@@ -7,10 +7,10 @@
 <title>Login</title>
 
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+	href="css/normalize.min.css">
 
-<link rel='stylesheet prefetch'
-	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+<link rel="stylesheet prefetch"
+	href="css/font-awesome.min.css">
 
 <link rel="stylesheet" href="css/style.css">
 
@@ -136,7 +136,7 @@
 		</div>
 	</div>
 	<script
-		src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+		src="javascript/jquery.min.js"></script>
 	<script src="javascript/index.js"></script>
 	<script>
 		function checkExist() {
