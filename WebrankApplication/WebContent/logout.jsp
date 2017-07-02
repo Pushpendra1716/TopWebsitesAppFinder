@@ -6,7 +6,7 @@
 <script>
 </script>
 </head>
-<body dir="ltr">
+<body dir="ltr" bgcolor=" silver ">
 <font color="red"><label style="position: absolute; right: 110px;"><%=session.getAttribute("userId") %></label></font>
 <font color="blue"><a style="position: absolute;right: 30px;" href="doLogOut.jsp">Sign out</a></font>
 

@@ -9,7 +9,7 @@
 history.forward();
 </script>
 </head>
-<body>
+<body bgcolor=" silver ">
 
 <h3 align="center">Failed To persist the user's data.<a href="index.html">click here</a> to go to the login page</h3>
 </body>
